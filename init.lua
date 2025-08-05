@@ -3,6 +3,12 @@ vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
 vim.g.mapleader =" "
+vim.keymap.set('n', '<C-Left>', '<C-w>h')
+vim.keymap.set('n', '<C-Down>', '<C-w>j')
+vim.keymap.set('n', '<C-Up>', '<C-w>k')
+vim.keymap.set('n', '<C-Right>', '<C-w>l')
+
+vim.opt.number = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -32,7 +38,7 @@ vim.keymap.set('n','<leader>n',':Neotree filesystem reveal left<CR>',{})
 
 local config=require("nvim-treesitter.configs")
 config.setup({
-  ensure_installed={"c","cpp", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline"},
+  ensure_installed={"c","cpp", "lua", "vim", "query", "markdown", "markdown_inline"},
   
   highlight = {
     enable = true
@@ -42,3 +48,5 @@ config.setup({
 
 require("catppuccin").setup()
 vim.cmd.colorscheme "catppuccin"
+require("plugins.lsp")
+
