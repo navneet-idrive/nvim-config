@@ -215,15 +215,10 @@ return {
     end
   },
 
-  -- Discord presence
   {
-    "andweeb/presence.nvim",
-    event = "VeryLazy",
+    "rcarriga/nvim-notify",
     config = function()
-      require("presence").setup({
-        neovim_image_text = "Editing like a pro",
-        main_image = "file",
-      })
+      vim.notify = require("notify")
     end
   }
 }
