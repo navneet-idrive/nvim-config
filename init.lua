@@ -49,4 +49,16 @@ config.setup({
 require("catppuccin").setup()
 vim.cmd.colorscheme "catppuccin"
 require("plugins.lsp")
+vim.opt.clipboard = "unnamedplus"
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●', -- or '■', '▎', '▶'
+    spacing = 2,
+  },
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+})
 
