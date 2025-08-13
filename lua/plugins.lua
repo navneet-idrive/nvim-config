@@ -20,6 +20,17 @@ return {
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
       },
+      config = function()
+        require("neo-tree").setup({
+        filesystem = {
+          follow_current_file = {
+            enabled = true,   -- highlight & focus current file
+            leave_dirs_open = true,
+          },
+        },
+      })
+      end,
+      
     },
     {
       "neovim/nvim-lspconfig",
@@ -220,6 +231,15 @@ return {
     config = function()
       vim.notify = require("notify")
     end
-  }
+  },
+
+  {
+    "numToStr/Comment.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("Comment").setup()
+    end
+}
+
 }
 

@@ -34,7 +34,11 @@ local builtin=require("telescope.builtin")
 vim.keymap.set('n','<C-p>',builtin.find_files,{})
 vim.keymap.set('n','<leader>fg',builtin.live_grep,{})
 
-vim.keymap.set('n','<leader>n',':Neotree filesystem reveal left<CR>',{})
+-- vim.keymap.set('n','<leader>n',':Neotree filesystem reveal left<CR>',{})
+vim.keymap.set('n', '<leader>n', ':Neotree toggle<CR>', {})
+
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+
 
 local config=require("nvim-treesitter.configs")
 config.setup({
@@ -61,4 +65,27 @@ vim.diagnostic.config({
   update_in_insert = false,
   severity_sort = true,
 })
+
+
+--Auto Save
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  pattern = "*",
+  callback = function()
+    if vim.bo.modified and vim.bo.filetype ~= "" and vim.fn.expand("%") ~= "" then
+      vim.cmd("silent write")
+    end
+  end,
+})
+
+--Comment of ctrl+/
+
+vim.keymap.set("n", "<C-_>", function()
+  require("Comment.api").toggle.linewise.current()
+end, { desc = "Toggle comment with Ctrl+/" })
+
+vim.keymap.set("v", "<C-_>", "<Esc><Cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", {
+  desc = "Toggle comment in visual mode",
+})
+
+
 
