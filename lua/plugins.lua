@@ -239,7 +239,29 @@ return {
     config = function()
       require("Comment").setup()
     end
-}
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("gitsigns").setup {
+        current_line_blame = true,
+        current_line_blame_opts = {
+          delay = 500,
+          virt_text_pos = 'eol'
+        }
+      }
+    end
+  },
+
+  {
+    "petertriho/nvim-scrollbar",
+    config = function()
+      require("scrollbar").setup()
+    end,
+  }
+
+
 
 }
 
